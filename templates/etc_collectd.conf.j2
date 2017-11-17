@@ -56,8 +56,27 @@ LoadPlugin cpu
 LoadPlugin interface
 LoadPlugin load
 LoadPlugin memory
+{% if collectd_extra_enabled is defined %}
+LoadPlugin {{ collectd_extra_packages }}
+
+<Plugin apache>
+  <Instance "local">
+    URL "http://localhost/mod_status?auto";
+  </Instance>
+</Plugin>
+
+<Plugin mysql>
+  <Database wordpress>
+    Host "localhost"
+    User "root"
+    Password "Teilvadci"
+    Database "wordpress"
+    Port 3306
+    MasterStats false
+  </Database>
+</Plugin>
+{% endif %}
 
 <Include "{{ collectd_include_dir }}">
   Filter "*.conf"
 </Include>
-

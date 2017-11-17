@@ -1,0 +1,9 @@
+# roles/collectd/tasks/extra.yml
+# Extra packages to be installed for collectd
+---
+- name: Install extra packages for collectd
+  yum:
+    pkg: "{{ item }}"
+    state: installed
+  with_items: "collectd-{{ collectd_extra_packages }}.x86_64"
+  tags: collectd
