@@ -1,7 +1,7 @@
 # roles/collectd/tasks/main.yml
 ---
 - include: extra.yml
-  when: collectd_extra_enabled == "true"
+  when: collectd_extra_enabled == true
 
 - include: common.yml
 
