@@ -56,15 +56,13 @@ LoadPlugin cpu
 LoadPlugin interface
 LoadPlugin load
 LoadPlugin memory
-{% if collectd_extra_enabled is defined %}
+{% if collectd_extra_packages is defined %}
 LoadPlugin {{ collectd_extra_packages }}
-
 <Plugin apache>
   <Instance "local">
     URL "http://localhost/mod_status?auto";
   </Instance>
 </Plugin>
-
 <Plugin mysql>
   <Database wordpress>
     Host "localhost"
